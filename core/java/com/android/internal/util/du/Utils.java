@@ -33,6 +33,10 @@ import android.os.SystemProperties;
 
 import com.android.internal.R;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Locale;
 
@@ -145,6 +149,22 @@ public class Utils {
             e.printStackTrace();
         }
         return hasNavbar;
+    }
+
+    // Method to detect if device has dash charge
+    public static boolean isDashCharger() {
+        try {
+            FileReader file = new FileReader(
+                    "/sys/class/power_supply/battery/fastchg_status");
+            BufferedReader br = new BufferedReader(file);
+            String state = br.readLine();
+            br.close();
+            file.close();
+            return "1".equals(state);
+        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
+        }
+        return false;
     }
 
     // Method to detect if device is plugged in (wired or wireless)
