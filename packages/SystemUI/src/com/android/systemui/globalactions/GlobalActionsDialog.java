@@ -473,11 +473,11 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                             getCurrentUser().id) != 0 && !Utils.isInLockTaskMode()) {
                     mItems.add(mShowAdvancedToggles);
                 }
-            } else if (GLOBAL_ACTION_KEY_EMERGENCY.equals(actionKey)) {
+            /*} else if (GLOBAL_ACTION_KEY_EMERGENCY.equals(actionKey)) {
                 if (mSeparatedEmergencyButtonEnabled
                         && !mEmergencyAffordanceManager.needsEmergencyAffordance()) {
                     mItems.add(new EmergencyDialerAction());
-                }
+                }*/
             } else {
                 Log.e(TAG, "Invalid global action key " + actionKey);
             }
